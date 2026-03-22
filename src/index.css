@@ -1,0 +1,17 @@
+html, body, #root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow-x: hidden; 
+}
+
+.ant-layout {
+  background: transparent !important;
+}
+
+
+.ant-layout-header {
+  width: 100% !important;
+  left: 0 !important;
+}
