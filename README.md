@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+🚀 MÜHÜR Rezervasyon Sistemi - Kurulum Rehberi
+Bu projeyi yerel bilgisayarınızda çalıştırmak için 2 ayrı terminal açmanız gerekmektedir (Biri Frontend, diğeri Backend için).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+📋 Ön Gereksinimler
+Bilgisayarınızda Node.js (v18+) kurulu olmalıdır.
 
-Currently, two official plugins are available:
+Firebase üzerinde bir projeniz ve .env dosyalarınız hazır olmalıdır.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Terminal: Backend (Sunucu) Kurulumu
+Backend tarafı, Firebase ile iletişim kuran Node.js/Express yapısıdır.
 
-## React Compiler
+Klasöre gidin:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Bash
+cd restaurant-reservation/backend
+Gerekli paketleri yükleyin:
 
-## Expanding the ESLint configuration
+Bash
+npm install
+Çalıştırın:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Bash
+npm run dev
+Not: Sunucu genellikle http://localhost:5000 portunda çalışmaya başlar.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. Terminal: Frontend (React) Kurulumu
+Frontend tarafı, Ant Design ve Vite kullanılan kullanıcı arayüzüdür.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Klasöre gidin (Ana dizinden):
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Bash
+cd restaurant-reservation
+Gerekli paketleri yükleyin:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Bash
+npm install
+Uygulamayı başlatın:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Bash
+npm run dev
+Not: Tarayıcınızda otomatik olarak http://localhost:5173 (veya 3000) adresi açılacaktır.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+📦 Yüklenen Temel Paketler
+Eğer sıfırdan kuruyorsanız, projenin bel kemiğini oluşturan paketler şunlardır:
+
+Frontend (React):
+
+antd: UI bileşenleri (Tablo, Buton, Kartlar).
+
+@ant-design/icons: Dashboard ikonları.
+
+axios: API istekleri için.
+
+@emailjs/browser: Onay mailleri göndermek için.
+
+Backend (Node.js):
+
+express: Sunucu çatısı.
+
+firebase-admin: Veritabanı yönetimi.
+
+cors: Frontend-Backend arası güvenli iletişim.
+
+dotenv: Gizli anahtarları okumak için.
+
+💡 Önemli Not: .env Dosyaları
+Proje GitHub'dan çekildiğinde .env dosyaları gelmeyecektir. Kurulumu yapan kişi, ana dizine ve backend dizinine kendi Firebase anahtarlarını içeren .env dosyalarını oluşturmalıdır.
