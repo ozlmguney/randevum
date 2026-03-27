@@ -1,9 +1,9 @@
 import emailjs from '@emailjs/browser';
 
-const SERVICE_ID = "service_on89yj3";
-const PUBLIC_KEY = "xOoml-ZJlyHFc_CRw";
-const TEMPLATE_ID_INITIAL = "template_mw4mlyo"; 
-const TEMPLATE_ID_STATUS = "template_5yq0c0h";
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const TEMPLATE_ID_INITIAL = import.meta.env.VITE_EMAILJS_TEMPLATE_INITIAL;
+const TEMPLATE_ID_STATUS = import.meta.env.VITE_EMAILJS_TEMPLATE_STATUS;
 
 export interface EmailData {
   customerName: string;
@@ -17,8 +17,7 @@ export interface EmailData {
 
 export const sendReservationEmail = async (data: EmailData) => {
   const templateParams = {
-    to_email: data.email,       
-    email: data.email,        
+    to_email: data.email,
     customer_name: data.customerName,
     reservation_date: data.date,
     reservation_time: data.time,
@@ -27,14 +26,13 @@ export const sendReservationEmail = async (data: EmailData) => {
   };
 
   return emailjs.send(SERVICE_ID, TEMPLATE_ID_INITIAL, templateParams, PUBLIC_KEY);
-}
+};
 
 export const sendStatusUpdateEmail = async (data: EmailData, status: 'confirmed' | 'rejected') => {
   const statusText = status === 'confirmed' ? 'ONAYLANDI' : 'REDDEDİLDİ';
   
   const templateParams = {
-    to_email: data.email,    
-    email: data.email,
+    to_email: data.email,
     customer_name: data.customerName,
     reservation_status: statusText, 
     reservation_date: data.date,
