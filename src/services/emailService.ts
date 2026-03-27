@@ -17,21 +17,24 @@ export interface EmailData {
 
 export const sendReservationEmail = async (data: EmailData) => {
   const templateParams = {
-    to_email: data.email,
+    to_email: data.email,       
+    email: data.email,        
     customer_name: data.customerName,
     reservation_date: data.date,
     reservation_time: data.time,
     guest_count: data.guestCount,
+    reply_to: "restoran-maili@gmail.com", 
   };
 
   return emailjs.send(SERVICE_ID, TEMPLATE_ID_INITIAL, templateParams, PUBLIC_KEY);
-};
+}
 
 export const sendStatusUpdateEmail = async (data: EmailData, status: 'confirmed' | 'rejected') => {
   const statusText = status === 'confirmed' ? 'ONAYLANDI' : 'REDDEDİLDİ';
   
   const templateParams = {
-    to_email: data.email,
+    to_email: data.email,    
+    email: data.email,
     customer_name: data.customerName,
     reservation_status: statusText, 
     reservation_date: data.date,
